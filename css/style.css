@@ -1,0 +1,55 @@
+body {
+    text-align: center;
+    background-color: lightslategrey;
+}
+
+.navbar {
+    margin: 25px;
+}
+
+.navbar-logo {
+    color: #007bff;
+}
+
+.startButton {
+    margin: 10px;
+}
+
+.reStartButton {
+    margin: 10px;
+}
+
+.howToPlayButton {
+    margin: 10px;
+}
+
+.gamePlay {
+    padding-left: 18%;
+}
+
+.game-column {
+    display: inline-block;
+}
+
+.square {
+    height: 25px;
+    width: 25px;
+    background-color: skyblue;
+    margin: 1px;
+}
+
+.square-1-1, .square-2-1, .square-3-1, .square-4-1, .square-5-1, .square-6-1, .square-7-1, .square-8-1, .square-9-1, .square-10-1, .square-11-1, .square-12-1, .square-13-1, .square-14-1, .square-15-1  {
+    background-color: green;
+}
+
+#lander {
+    background-color: orangered;
+}
+
+#obstacle {
+    background-color: white;
+}
+
+
+
+
