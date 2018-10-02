@@ -1,9 +1,8 @@
-console.log('Ready For Landing');
-
 // CREATE GAME GRID
 
 for(let y = 15; y > 0; y--){
-    $('.col-8').append(`<div class='row game-row-${y}'></div>`)
+ 
+    $('.col-10').append(`<div class='row game-row-${y}'></div>`)
     for(let x = 1; x < 16; x++){
         const gameSquare = $('<div/>')
         gameSquare.addClass('square')
@@ -60,40 +59,68 @@ const moveRight = () => {
 }
 
 // IMPLEMENT A TIMER
-let time = 30;
+
+let time = 15;
 
 const timePasses = () => {
-    
     const interval = setInterval(() => {
         if(time > 0){
-        time--;
-        $('.metrics').text(`Timer: ${time}s`);
+            time--;
+            $('.metrics').text(`Timer: ${time}s`).attr('id', 'timer');
+            moveObstacle(newObstacleOne);
+            moveObstacle(newObstacleTwo);
+            moveObstacle(newObstacleThree);
+            dropLander();
+        }else{
+            window.location.reload(true);
+            alert("Crash Landing. Game Over");}
+    }, 1000);
+};
 
-        console.log('timer is working');
-        }
-      }, 1000);
-      moveObstacle();
-    };
+// START BUTTON
 
 $('.startButton').on('click', () => {
     timePasses();
+    $(`.square-1-15`).attr('id', 'sun');
+    $(`.square-2-15`).attr('id', 'sun');
+    $(`.square-1-14`).attr('id', 'sun');
+    $(`.square-2-14`).attr('id', 'sun');
+    $(`.square-6-1`).attr('id', 'landingPad');
+    $(`.square-7-1`).attr('id', 'landingPad');
 });
 
-const obstacle = { 
-    x: 1,
-    y: 13,
+
+// CREATE OBSTACLES
+
+class Obstacle {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        $(`.square-${this.x}-${this.y}`).attr('id', 'obstacle');
+    }
+} 
+
+const newObstacleOne = new Obstacle(1, 13);
+const newObstacleTwo = new Obstacle(1, 9);
+const newObstacleThree = new Obstacle(1, 5);
+
+// MOVE OBSTACLES 
+
+moveObstacle = (newObstacle) => {
+    if(newObstacle.x <= 15) {
+        $(`.square-${newObstacle.x}-${newObstacle.y}`).removeAttr('id');
+        newObstacle.x++;
+        $(`.square-${newObstacle.x}-${newObstacle.y}`).attr('id', 'obstacle');
+    }
 }
 
-$(`.square-1-13`).attr('id', 'obstacle')
-    const moveObstacle = () => {
-        const interval = setInterval(() => {
-            for(let i = 1; i <= 15; i++){
-                const currentObstacle = $('#obstacle');
-                currentObstacle.removeAttr('id');
-                obstacle.x++;
-                $(`.square-${obstacle.x}-${obstacle.y}`).attr('id', 'obstacle');
-                console.log("watch out");
-            }
-        }, 2000);   
+// LANDING MOVEMENT
+
+dropLander = () => {
+        $(`.square-${lander.x}-${lander.y}`).removeAttr('id');
+        lander.y--;
+        $(`.square-${lander.x}-${lander.y}`).attr('id', 'lander');
 }
+
+
 

@@ -9,6 +9,7 @@ body {
 
 .navbar-logo {
     color: #007bff;
+    padding-right: 25px;
 }
 
 .startButton {
@@ -42,6 +43,10 @@ body {
     background-color: green;
 }
 
+#landingPad {
+    background-color: black;
+}
+
 #lander {
     background-color: orangered;
 }
@@ -50,6 +55,16 @@ body {
     background-color: white;
 }
 
+#timer {
+    color: orangered;
+    font-style: bold;
+    background-color: #343a40;
+    margin-left: 25px;
+}
+
+#sun {
+    background-color: yellow;
+}
 
 
 
