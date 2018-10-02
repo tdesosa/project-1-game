@@ -60,7 +60,7 @@ const moveRight = () => {
 
 // IMPLEMENT A TIMER & WIN/LOSE GAME ALERTS
 
-let time = 45;
+let time = 30;
 
 const timePasses = () => {
     const interval = setInterval(() => {
@@ -71,19 +71,21 @@ const timePasses = () => {
                 moveObstacle(obstacleArray[i]);
             };
             if(time % 1 === 0){
-                const yCoordinate = Math.floor(Math.random()* 12 + 2);
+                const yCoordinate = Math.floor(Math.random()* 12 + 3);
                 const newObstacle = new Obstacle(1, yCoordinate)
             }
             if(time % 3 === 0){
             dropLander();
             }
-        }else if($(`.square-6-1`).attr('id', 'lander') === true){
+        }
+        if($('.landingPad#lander').length > 0){
             window.location.reload(true);
             alert("Landed Safely. You Win!")
-        }else{
+        }
+        if(time === 0){
             window.location.reload(true);
             alert("Crash Landing. Game Over.");}
-    }, 500);
+    }, 1000);
 };
 
 // START BUTTON
@@ -94,7 +96,7 @@ $('.startButton').on('click', () => {
     $(`.square-2-15`).attr('id', 'sun');
     $(`.square-1-14`).attr('id', 'sun');
     $(`.square-2-14`).attr('id', 'sun');
-    $(`.square-6-1`).attr('id', 'landingPad');
+    $(`.square-6-1`).addClass('landingPad');
 });
 
 
