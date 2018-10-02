@@ -16,7 +16,7 @@ for(let y = 15; y > 0; y--){
 $(`.square-8-15`).attr('id', 'lander')
 $('body').keydown((event)=>{
     if(event.which == 40){
-        moveDown()
+        //moveDown()
     }else if(event.which == 37){
         moveLeft()
     }else if(event.which == 39){
@@ -30,15 +30,15 @@ const lander = {
     y: 15,
     }
 
-const moveDown = () => {
-    if(lander.y <= 15 && lander.y > 1){
-        const currentSquare = $('#lander');
-        currentSquare.removeAttr('id');
-        lander.y--;
-        $(`.square-${lander.x}-${lander.y}`).attr('id', 'lander');
-        console.log("moving on down");
-    }
-}
+// const moveDown = () => {
+//     if(lander.y <= 15 && lander.y > 1){
+//         const currentSquare = $('#lander');
+//         currentSquare.removeAttr('id');
+//         lander.y--;
+//         $(`.square-${lander.x}-${lander.y}`).attr('id', 'lander');
+//         console.log("moving on down");
+//     }
+// }
 
 const moveLeft = () => {
     if(lander.x <= 15 && lander.x > 1){
@@ -58,23 +58,32 @@ const moveRight = () => {
     }
 }
 
-// IMPLEMENT A TIMER
+// IMPLEMENT A TIMER & WIN/LOSE GAME ALERTS
 
-let time = 15;
+let time = 45;
 
 const timePasses = () => {
     const interval = setInterval(() => {
         if(time > 0){
             time--;
             $('.metrics').text(`Timer: ${time}s`).attr('id', 'timer');
-            moveObstacle(newObstacleOne);
-            moveObstacle(newObstacleTwo);
-            moveObstacle(newObstacleThree);
+            for(let i=0; i < obstacleArray.length; i++){
+                moveObstacle(obstacleArray[i]);
+            };
+            if(time % 1 === 0){
+                const yCoordinate = Math.floor(Math.random()* 12 + 2);
+                const newObstacle = new Obstacle(1, yCoordinate)
+            }
+            if(time % 3 === 0){
             dropLander();
+            }
+        }else if($(`.square-6-1`).attr('id', 'lander') === true){
+            window.location.reload(true);
+            alert("Landed Safely. You Win!")
         }else{
             window.location.reload(true);
-            alert("Crash Landing. Game Over");}
-    }, 1000);
+            alert("Crash Landing. Game Over.");}
+    }, 500);
 };
 
 // START BUTTON
@@ -86,19 +95,21 @@ $('.startButton').on('click', () => {
     $(`.square-1-14`).attr('id', 'sun');
     $(`.square-2-14`).attr('id', 'sun');
     $(`.square-6-1`).attr('id', 'landingPad');
-    $(`.square-7-1`).attr('id', 'landingPad');
 });
 
 
 // CREATE OBSTACLES
-
+const obstacleArray = [];
 class Obstacle {
     constructor(x, y) {
         this.x = x;
         this.y = y;
         $(`.square-${this.x}-${this.y}`).attr('id', 'obstacle');
+        obstacleArray.push(this);
     }
 } 
+
+// STATIC OBSTACLES FOR WHEN PAGE LOADS
 
 const newObstacleOne = new Obstacle(1, 13);
 const newObstacleTwo = new Obstacle(1, 9);
@@ -117,10 +128,12 @@ moveObstacle = (newObstacle) => {
 // LANDING MOVEMENT
 
 dropLander = () => {
+    if(lander.y <= 15 && lander.y > 1){
         $(`.square-${lander.x}-${lander.y}`).removeAttr('id');
         lander.y--;
         $(`.square-${lander.x}-${lander.y}`).attr('id', 'lander');
-}
+    }
+};
 
 
 
