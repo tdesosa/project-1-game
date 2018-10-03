@@ -61,7 +61,7 @@ const moveRight = () => {
 
 // IMPLEMENT A TIMER & WIN/LOSE GAME ALERTS & COLLISION DETECTION
 
-let time = 60;
+let time = 15;
 
 const timePasses = () => {
     setInterval(() => {
@@ -86,8 +86,9 @@ const timePasses = () => {
         if($('.obstacle#lander').length > 0){
             dropLander();
         }
-        if($('.obstacle#lander').length > 0){
-            dropLander();
+        if($('.square-1-1#lander').length > 0 || $('.square-2-1#lander').length > 0 || $('.square-3-1#lander').length > 0 || $('.square-4-1#lander').length > 0 || $('.square-5-1#lander').length > 0 || $('.square-7-1#lander').length > 0 || $('.square-8-1#lander').length > 0 || $('.square-9-1#lander').length > 0 || $('.square-10-1#lander').length > 0 || $('.square-11-1#lander').length > 0 || $('.square-12-1#lander').length > 0 || $('.square-13-1#lander').length > 0 || $('.square-14-1#lander').length > 0 || $('.square-15-1#lander').length > 0){
+            window.location.reload(true);
+            alert("You missed the target. Game Over.");
         }
         if(time === 0){
             window.location.reload(true);
@@ -100,12 +101,13 @@ const timePasses = () => {
 $('.startButton').on('click', () => {
     timePasses();
     $(`.square-1-15`).attr('id', 'sun');
-    $(`.square-2-15`).attr('id', 'sun');
-    $(`.square-1-14`).attr('id', 'sun');
-    $(`.square-2-14`).attr('id', 'sun');
     $(`.square-6-1`).addClass('landingPad');
 });
 
+// HOW TO PLAY BUTTON
+$('.howToPlayButton').on('click', () => {
+    $('.howToPlayModal').modal()
+});
 
 // CREATE OBSTACLES
 const obstacleArray = [];

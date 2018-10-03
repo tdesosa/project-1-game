@@ -1,6 +1,7 @@
 body {
     text-align: center;
     background-color: lightslategrey;
+    font-family: 'Permanent Marker', cursive;
 }
 
 .navbar {
@@ -33,26 +34,32 @@ body {
 }
 
 .square {
-    height: 25px;
-    width: 25px;
+    height: 30px;
+    width: 30px;
     background-color: skyblue;
-    margin: 1px;
+    /* margin: 1px; */
 }
 
 .square-1-1, .square-2-1, .square-3-1, .square-4-1, .square-5-1, .square-6-1, .square-7-1, .square-8-1, .square-9-1, .square-10-1, .square-11-1, .square-12-1, .square-13-1, .square-14-1, .square-15-1  {
-    background-color: green;
+    background-image: url('../images/tree.png');
 }
 
 .landingPad {
-    background-color: black;
+    background-image: url('../images/target.png');
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 #lander {
-    background-color: orangered;
+    background-image: url('../images/skydiver.png');
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .obstacle {
-    background-color: white;
+    background-image: url('../images/cloud.png');
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 #timer {
@@ -63,7 +70,9 @@ body {
 }
 
 #sun {
-    background-color: yellow;
+    background-image: url('../images/sun.png');
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 
