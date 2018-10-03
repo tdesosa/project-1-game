@@ -29,6 +29,7 @@ const lander = {
     x: 8,
     y: 15,
     }
+$('lander').addClass('lander');
 
 // const moveDown = () => {
 //     if(lander.y <= 15 && lander.y > 1){
@@ -58,29 +59,35 @@ const moveRight = () => {
     }
 }
 
-// IMPLEMENT A TIMER & WIN/LOSE GAME ALERTS
+// IMPLEMENT A TIMER & WIN/LOSE GAME ALERTS & COLLISION DETECTION
 
-let time = 30;
+let time = 60;
 
 const timePasses = () => {
-    const interval = setInterval(() => {
+    setInterval(() => {
         if(time > 0){
             time--;
             $('.metrics').text(`Timer: ${time}s`).attr('id', 'timer');
             for(let i=0; i < obstacleArray.length; i++){
                 moveObstacle(obstacleArray[i]);
             };
-            if(time % 1 === 0){
+            if(time % .5 === 0){
                 const yCoordinate = Math.floor(Math.random()* 12 + 3);
-                const newObstacle = new Obstacle(1, yCoordinate)
+                new Obstacle(1, yCoordinate)
             }
-            if(time % 3 === 0){
+            if(time % .5 === 0){
             dropLander();
             }
         }
         if($('.landingPad#lander').length > 0){
             window.location.reload(true);
             alert("Landed Safely. You Win!")
+        }
+        if($('.obstacle#lander').length > 0){
+            dropLander();
+        }
+        if($('.obstacle#lander').length > 0){
+            dropLander();
         }
         if(time === 0){
             window.location.reload(true);
@@ -106,7 +113,7 @@ class Obstacle {
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        $(`.square-${this.x}-${this.y}`).attr('id', 'obstacle');
+        $(`.square-${this.x}-${this.y}`).addClass('obstacle');
         obstacleArray.push(this);
     }
 } 
@@ -121,13 +128,13 @@ const newObstacleThree = new Obstacle(1, 5);
 
 moveObstacle = (newObstacle) => {
     if(newObstacle.x <= 15) {
-        $(`.square-${newObstacle.x}-${newObstacle.y}`).removeAttr('id');
+        $(`.square-${newObstacle.x}-${newObstacle.y}`).removeClass('obstacle');
         newObstacle.x++;
-        $(`.square-${newObstacle.x}-${newObstacle.y}`).attr('id', 'obstacle');
+        $(`.square-${newObstacle.x}-${newObstacle.y}`).addClass('obstacle');
     }
-}
+};
 
-// LANDING MOVEMENT
+// LANDER DROPPING MOVEMENT
 
 dropLander = () => {
     if(lander.y <= 15 && lander.y > 1){
