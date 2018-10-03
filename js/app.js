@@ -61,7 +61,7 @@ const moveRight = () => {
 
 // IMPLEMENT A TIMER & WIN/LOSE GAME ALERTS & COLLISION DETECTION
 
-let time = 15;
+let time = 12;
 
 const timePasses = () => {
     setInterval(() => {

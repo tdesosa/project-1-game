@@ -11,6 +11,7 @@ body {
 .navbar-logo {
     color: #007bff;
     padding-right: 25px;
+    font-size: 3rem;
 }
 
 .startButton {
@@ -65,8 +66,8 @@ body {
 #timer {
     color: orangered;
     font-style: bold;
-    background-color: #343a40;
-    margin-left: 25px;
+    margin-left: 50px;
+    font-size: 30px;
 }
 
 #sun {
@@ -74,6 +75,5 @@ body {
     background-repeat: no-repeat;
     background-position: center;
 }
-
 
 
