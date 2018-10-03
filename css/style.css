@@ -2,6 +2,9 @@ body {
     text-align: center;
     background-color: lightslategrey;
     font-family: 'Permanent Marker', cursive;
+    /* background-image: url('../images/hubbleUniverse.png'); */
+    /* background-size: cover; */
+    
 }
 
 .navbar {
@@ -76,4 +79,8 @@ body {
     background-position: center;
 }
 
+.modalGifs {
+    width: 275px;
+    height: 175px;
+}
 

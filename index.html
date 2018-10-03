@@ -77,14 +77,12 @@
               </button>
             </div>
             <div class="modal-body">
-                
                 <p>The goal of PARACHUTE is to make it to the landing spot before the timer runs out.</p>
-
                 <p>Dropping THROUGH clouds will help you make it to the landing spot faster.</p>
-                  
                 <p>Click the "START BUTTON" to begin.</p>
-                  
                 <p>Good luck and enjoy!</p>
+
+                <img class='modalGifs' src='images/highFive.gif'>
               
             </div>
             <div class="modal-footer">
@@ -94,6 +92,68 @@
         </div>
       </div>
     <!-- How To Play Modal -->
+
+    <!-- Missed Target Modal -->
+    <div class="modal missedTargetModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+                <p>You Missed Your Target :(</p>
+                <p>Try Again!</p>
+
+                <img class='modalGifs' src='images/missedTarget.gif'>
+              
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary missedTargetRestartBtn">Restart</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- Missed Target Modal -->
+
+    <!-- Times Up Modal -->
+    <div class="modal timesUpModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+                <p>Times Up :(</p>
+                <p>Try Again!</p>
+
+                <img class='modalGifs' src='images/timesUp.gif'>
+              
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary timesUpRestartBtn">Restart</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- Times Up Modal -->
+
+    <!-- Safe Landing Modal -->
+    <div class="modal safeLandingModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+                <p>You Made It To Your Landing Target!</p>
+                <p>Your a Winner! TREAT YO SELF!</p>
+
+                <img class='modalGifs' src='images/beyonce.gif'>
+              
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary playAgainBtn">Play Again</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- Safe Landing Modal -->
+
+    
 
     <script src="js/app.js"></script>
     

@@ -80,19 +80,17 @@ const timePasses = () => {
             }
         }
         if($('.landingPad#lander').length > 0){
-            window.location.reload(true);
-            alert("Landed Safely. You Win!")
+            $('.safeLandingModal').modal()
         }
         if($('.obstacle#lander').length > 0){
             dropLander();
         }
         if($('.square-1-1#lander').length > 0 || $('.square-2-1#lander').length > 0 || $('.square-3-1#lander').length > 0 || $('.square-4-1#lander').length > 0 || $('.square-5-1#lander').length > 0 || $('.square-7-1#lander').length > 0 || $('.square-8-1#lander').length > 0 || $('.square-9-1#lander').length > 0 || $('.square-10-1#lander').length > 0 || $('.square-11-1#lander').length > 0 || $('.square-12-1#lander').length > 0 || $('.square-13-1#lander').length > 0 || $('.square-14-1#lander').length > 0 || $('.square-15-1#lander').length > 0){
-            window.location.reload(true);
-            alert("You missed the target. Game Over.");
+            $('.missedTargetModal').modal()
         }
-        if(time === 0){
-            window.location.reload(true);
-            alert("Crash Landing. Game Over.");}
+        else if(time === 0){
+            $('.timesUpModal').modal()
+        }
     }, 1000);
 };
 
@@ -105,9 +103,29 @@ $('.startButton').on('click', () => {
 });
 
 // HOW TO PLAY BUTTON
+
 $('.howToPlayButton').on('click', () => {
     $('.howToPlayModal').modal()
 });
+
+// TIMES UP MODAL RESTART
+
+$('.timesUpRestartBtn').on('click', () => {
+    window.location.reload(true);
+});
+
+// MISSED TARGET MODAL RESTART
+
+$('.missedTargetRestartBtn').on('click', () => {
+    window.location.reload(true);
+});
+
+// TARGET REACHED/WINNING MODAL RESTART
+
+$('.playAgainBtn').on('click', () => {
+    window.location.reload(true);
+});
+
 
 // CREATE OBSTACLES
 const obstacleArray = [];
