@@ -67,7 +67,7 @@ const timePasses = () => {
     const interval = setInterval(() => {
         if(time > 0){
             time--;
-            $('.metrics').text(`Timer: ${time}s`).attr('id', 'timer');
+            $('.timeDisplay').text(`Timer: ${time}s`).attr('id', 'timer');
             for(let i=0; i < obstacleArray.length; i++){
                 moveObstacle(obstacleArray[i]);
             };
@@ -83,6 +83,8 @@ const timePasses = () => {
             dropLander();
             if(time <= 11){
                 $('#swooshSound')[0].play();
+                $('.swooshDisplay').text(`Speeding Up!`).attr('id', 'swoosh');
+                setTimeout(removeSwooshDisplay, 500);
             }
         }
         else if($('.square-1-1#lander').length > 0 || $('.square-2-1#lander').length > 0 || $('.square-3-1#lander').length > 0 || $('.square-4-1#lander').length > 0 || $('.square-5-1#lander').length > 0 || $('.square-7-1#lander').length > 0 || $('.square-8-1#lander').length > 0 || $('.square-9-1#lander').length > 0 || $('.square-10-1#lander').length > 0 || $('.square-11-1#lander').length > 0 || $('.square-12-1#lander').length > 0 || $('.square-13-1#lander').length > 0 || $('.square-14-1#lander').length > 0 || $('.square-15-1#lander').length > 0){
@@ -104,7 +106,6 @@ const timePasses = () => {
 
 $('.startButton').on('click', () => {
     timePasses();
-    $(`.square-1-15`).attr('id', 'sun');
     $(`.square-6-1`).addClass('landingPad');
 });
 
@@ -132,13 +133,6 @@ $('.missedTargetRestartBtn').on('click', () => {
     window.location.reload(true);
 });
 
-// TARGET REACHED/WINNING MODAL RESTART
-
-$('.playAgainBtn').on('click', () => {
-    window.location.reload(true);
-});
-
-
 // CREATE OBSTACLES
 const obstacleArray = [];
 class Obstacle {
@@ -150,8 +144,9 @@ class Obstacle {
     }
 } 
 
-// STATIC OBSTACLES FOR WHEN PAGE LOADS
+// STATIC IMAGES FOR WHEN PAGE LOADS
 
+$(`.square-1-15`).attr('id', 'sun');
 const newObstacleOne = new Obstacle(1, 13);
 const newObstacleTwo = new Obstacle(1, 9);
 const newObstacleThree = new Obstacle(1, 5);
@@ -175,6 +170,11 @@ dropLander = () => {
         $(`.square-${lander.x}-${lander.y}`).attr('id', 'lander');
     }
 };
+
+removeSwooshDisplay = () => {
+    $('#swoosh').empty();
+    
+}
 
 
 

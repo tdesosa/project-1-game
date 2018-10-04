@@ -41,7 +41,12 @@ body {
     height: 30px;
     width: 30px;
     background-color: skyblue;
-    /* margin: 1px; */
+}
+
+.square2 {
+    height: 30px;
+    width: 30px;
+    background-color: black;
 }
 
 .square-1-1, .square-2-1, .square-3-1, .square-4-1, .square-5-1, .square-6-1, .square-7-1, .square-8-1, .square-9-1, .square-10-1, .square-11-1, .square-12-1, .square-13-1, .square-14-1, .square-15-1  {
@@ -67,10 +72,10 @@ body {
 }
 
 #timer {
-    color: orangered;
-    font-style: bold;
+    color: #007bff;
+    margin-top: 25px;
     margin-left: 50px;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 #sun {
@@ -85,5 +90,15 @@ body {
 }
 
 #swoosh {
-    color: #007bff;
+    color: white;
+    margin-top: 25px;
+    margin-left: 50px;
+    font-size: 25px;
+}
+
+.levelDisplay {
+    color: white;
+    margin-top: 25px;
+    margin-left: 50px;
+    font-size: 25px;
 }

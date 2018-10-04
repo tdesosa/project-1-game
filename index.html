@@ -43,7 +43,9 @@
     <div class="container-fluid align-items-center">
       <div class="row justify-content-center">
         <div class="col metrics justify-content-center">
-          <span class="swooshDisplay"></span>
+          <div class="row levelDisplay">Level 1</div>
+          <div class="row timeDisplay"></div>
+          <div class="row swooshDisplay"></div>
         </div>
         <div class="col-10 gamePlay justify-content-center">
         </div>
@@ -127,13 +129,13 @@
           <div class="modal-content">
             <div class="modal-body">
                 <p>You Made It To Your Landing Target!</p>
-                <p>Your a Winner! TREAT YO SELF!</p>
+                <p>Way To Go!</p>
 
                 <img class='modalGifs' src='images/safeLanding.gif'>
               
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary playAgainBtn">Play Again</button>
+                <button type="button" class="btn btn-secondary levelTwoBtn" data-dismiss="modal">Move On To Level 2</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
