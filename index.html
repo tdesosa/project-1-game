@@ -27,13 +27,14 @@
     <link rel="stylesheet" href="css/style.css">
 
 </head>
+
 <body>
 
     <!-- Bootstrap Nav Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-center">
             <div class="navbar-logo">PARACHUTE</div>    
             <button type="button" class="btn btn-primary startButton">Start Game</button>
-            <!-- <button type="button" class="btn btn-primary reStartButton">Restart Game</button> -->
+            <button type="button" class="btn btn-primary restartButton">Restart Game</button>
             <button type="button" class="btn btn-primary howToPlayButton">How To Play</button>
     </nav>
     <!-- Bootstrap Nav Bar -->
@@ -42,6 +43,7 @@
     <div class="container-fluid align-items-center">
       <div class="row justify-content-center">
         <div class="col metrics justify-content-center">
+          <span class="swooshDisplay"></span>
         </div>
         <div class="col-10 gamePlay justify-content-center">
         </div>
@@ -51,20 +53,6 @@
       </div>
     </div>
     <!-- Bootstrap Metrics/GamePlay/Character Containers -->
-
-    <!-- jQeury Script Tag -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
-    <!-- jQuery Script Tag -->
-
-    <!-- Velocity Script Tag -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.2/velocity.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.2/velocity.ui.js"></script>
-    <!-- Velocity Script Tag -->
-
-    <!-- Bootstrap JS Tag -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS Tag -->
 
     <!-- How To Play Modal -->
     <div class="modal howToPlayModal" tabindex="-1" role="dialog">
@@ -78,7 +66,7 @@
             </div>
             <div class="modal-body">
                 <p>The goal of PARACHUTE is to make it to the landing spot before the timer runs out.</p>
-                <p>Dropping THROUGH clouds will help you make it to the landing spot faster.</p>
+                <p>Dropping DOWN THROUGH clouds will help you make it to the landing spot faster.</p>
                 <p>Click the "START BUTTON" to begin.</p>
                 <p>Good luck and enjoy!</p>
 
@@ -141,7 +129,7 @@
                 <p>You Made It To Your Landing Target!</p>
                 <p>Your a Winner! TREAT YO SELF!</p>
 
-                <img class='modalGifs' src='images/beyonce.gif'>
+                <img class='modalGifs' src='images/safeLanding.gif'>
               
             </div>
             <div class="modal-footer">
@@ -152,6 +140,26 @@
         </div>
       </div>
     <!-- Safe Landing Modal -->
+
+    <!-- Swoosh Audo For Dropping Through Clouds -->
+    <audio id="swooshSound" autoplay>
+      <source src="sounds/swooshSound.wav">
+    </audio>
+    <!-- Swoosh Audo For Dropping Through Clouds -->
+
+    <!-- jQeury Script Tag -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
+    <!-- jQuery Script Tag -->
+  
+      <!-- Velocity Script Tag -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.2/velocity.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.2/velocity.ui.js"></script>
+      <!-- Velocity Script Tag -->
+    
+      <!-- Bootstrap JS Tag -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+      <!-- Bootstrap JS Tag -->
 
     
 
