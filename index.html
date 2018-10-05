@@ -44,7 +44,7 @@
       <div class="row justify-content-center">
         <div class="col metrics justify-content-center">
           <div class="row levelDisplay">Level 1</div>
-          <div class="row timeDisplay"></div>
+          <div class="row timeDisplay" id="timer">Timer: 12s</div>
           <div class="row swooshDisplay"></div>
         </div>
         <div class="col-10 gamePlay justify-content-center">
@@ -142,6 +142,26 @@
         </div>
       </div>
     <!-- Safe Landing Modal -->
+
+    <!-- Final Modal -->
+    <div class="modal finalModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+                <p>You Made It To Your Landing Target Again!</p>
+                <p>Way To Go!</p>
+
+                <img class='modalGifs' src='images/elephantsDiving.gif'>
+              
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary finalRestartModal" data-dismiss="modal">End Game</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- Final Modal -->
 
     <!-- Swoosh Audo For Dropping Through Clouds -->
     <audio id="swooshSound" autoplay>

@@ -18,9 +18,9 @@ $('body').keydown((event)=>{
     if(event.which == 40){
         //moveDown()
     }else if(event.which == 37){
-        moveLeft()
+        moveLeft();
     }else if(event.which == 39){
-        moveRight()
+        moveRight();
     }
     
 });
@@ -29,9 +29,8 @@ const lander = {
     x: 8,
     y: 15,
     }
-$('lander').addClass('lander');
 
-// const moveDown = () => {
+// let moveDown = () => {
 //     if(lander.y <= 15 && lander.y > 1){
 //         const currentSquare = $('#lander');
 //         currentSquare.removeAttr('id');
@@ -59,29 +58,48 @@ const moveRight = () => {
     }
 }
 
+// CREATE SPEED ASSIST (CLOUDS)
+
+const speedAssistArray = [];
+class SpeedAssist {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        $(`.square-${this.x}-${this.y}`).addClass('speedAssist');
+        speedAssistArray.push(this);
+    }
+} 
+
+// STATIC IMAGES FOR WHEN PAGE LOADS ON LEVEL 1
+
+$(`.square-1-15`).attr('id', 'sun');
+new SpeedAssist(1, 13);
+new SpeedAssist(1, 9);
+new SpeedAssist(1, 5);
+
 // IMPLEMENT A TIMER & WIN/LOSE GAME ALERTS & COLLISION DETECTION
 
-let time = 12;
+let timeOne = 12;
 
 const timePasses = () => {
     const interval = setInterval(() => {
-        if(time > 0){
-            time--;
-            $('.timeDisplay').text(`Timer: ${time}s`).attr('id', 'timer');
-            for(let i=0; i < obstacleArray.length; i++){
-                moveObstacle(obstacleArray[i]);
+        if(timeOne > 0){
+            timeOne--;
+            $('.timeDisplay').text(`Timer: ${timeOne}s`).attr('id', 'timer');
+            for(let i=0; i < speedAssistArray.length; i++){
+                moveSpeedAssist(speedAssistArray[i]);
             };
-            if(time % .5 === 0){
+            if(timeOne % .5 === 0){
                 const yCoordinate = Math.floor(Math.random()* 12 + 3);
-                new Obstacle(1, yCoordinate)
+                new SpeedAssist(1, yCoordinate)
             }
-            if(time % .5 === 0){
+            if(timeOne % .5 === 0){
             dropLander();
             }
         }
-        if($('.obstacle#lander').length > 0){
+        if($('.speedAssist#lander').length > 0){
             dropLander();
-            if(time <= 11){
+            if(timeOne <= 11){
                 $('#swooshSound')[0].play();
                 $('.swooshDisplay').text(`Speeding Up!`).attr('id', 'swoosh');
                 setTimeout(removeSwooshDisplay, 500);
@@ -91,14 +109,14 @@ const timePasses = () => {
             $('.missedTargetModal').modal()
             clearInterval(interval);
         }
-        else if(time === 0){
+        else if(timeOne === 0){
             $('.timesUpModal').modal()
             clearInterval(interval);
         }
         else if($('.landingPad#lander').length > 0){
             $('.safeLandingModal').modal()
             clearInterval(interval);
-        }
+        }   
     }, 1000);
 };
 
@@ -133,31 +151,30 @@ $('.missedTargetRestartBtn').on('click', () => {
     window.location.reload(true);
 });
 
-// CREATE OBSTACLES
-const obstacleArray = [];
-class Obstacle {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        $(`.square-${this.x}-${this.y}`).addClass('obstacle');
-        obstacleArray.push(this);
+// FINAL RESTART MODAL
+
+$('.finalRestartModal').on('click', () => {
+    window.location.reload(true);
+});
+
+
+// MOVE SPEED ASSISTS (CLOUDS)
+
+moveSpeedAssist = (newSpeedAssist) => {
+    if(newSpeedAssist.x <= 15) {
+        $(`.square-${newSpeedAssist.x}-${newSpeedAssist.y}`).removeClass('speedAssist');
+        newSpeedAssist.x++;
+        $(`.square-${newSpeedAssist.x}-${newSpeedAssist.y}`).addClass('speedAssist');
     }
-} 
+};
 
-// STATIC IMAGES FOR WHEN PAGE LOADS
+// LEVEL TWO SPEED ASSISTS (CLOUD) MOVEMENTS
 
-$(`.square-1-15`).attr('id', 'sun');
-const newObstacleOne = new Obstacle(1, 13);
-const newObstacleTwo = new Obstacle(1, 9);
-const newObstacleThree = new Obstacle(1, 5);
-
-// MOVE OBSTACLES 
-
-moveObstacle = (newObstacle) => {
-    if(newObstacle.x <= 15) {
-        $(`.square-${newObstacle.x}-${newObstacle.y}`).removeClass('obstacle');
-        newObstacle.x++;
-        $(`.square-${newObstacle.x}-${newObstacle.y}`).addClass('obstacle');
+moveSpeedAssistLevelTwo = (newSpeedAssist) => {
+    if(newSpeedAssist.x <= 15) {
+        $(`.square2-${newSpeedAssist.x}-${newSpeedAssist.y}`).removeClass('speedAssistTwo');
+        newSpeedAssist.x++;
+        $(`.square2-${newSpeedAssist.x}-${newSpeedAssist.y}`).addClass('speedAssistTwo');
     }
 };
 
@@ -171,10 +188,164 @@ dropLander = () => {
     }
 };
 
+// SWOOSH DISPLAY RESET
+
 removeSwooshDisplay = () => {
     $('#swoosh').empty();
     
 }
+
+
+
+// LEVEL TWO IMPLEMENTED BELOW//
+
+// TARGET REACHED/MODAL TO LOAD LEVEL 2
+
+$('.levelTwoBtn').on('click', () => {
+    $('.col-10').empty();
+
+    $('.levelDisplay').empty();
+    $('.levelDisplay').text("Level 2");
+
+    $levelTwoButton = $('<button type="button" class="btn btn-primary beginLevelTwoButton">Begin Level 2</button>')
+    $('.startButton').replaceWith($levelTwoButton);
+
+    clearInterval(timePasses);
+    let timeTwo = 12;
+    $('.timeDisplay').text(`Timer: ${timeTwo}s`).attr('id', 'timer');
+   
+ 
+
+    // CREATE GRID FOR LEVEL 2
+
+    for(let y = 15; y > 0; y--){
+ 
+        $('.col-10').append(`<div class='row game2-row-${y}'></div>`)
+        for(let x = 1; x < 16; x++){
+            const gameSquareTwo = $('<div/>')
+            gameSquareTwo.addClass('square2')
+            gameSquareTwo.addClass(`square2-${x}-${y}`)
+            $(`.game2-row-${y}`).append(gameSquareTwo)
+        }
+    }
+    
+    // CREATE CHARACTER && CHARACTER MOVEMENTS FOR LEVEL 2'
+    
+    $(`.square2-8-15`).attr('id', 'landerTwo');
+
+    const landerTwo = {
+        x: 8,
+        y: 15,
+    }
+
+    $('body').keydown((event)=>{
+        if(event.which == 40){
+            //moveDown()
+        }else if(event.which == 37){
+            moveLeftTwo();
+        }else if(event.which == 39){
+            moveRightTwo();
+        }
+        
+    });
+
+    const moveLeftTwo = () => {
+        if(landerTwo.x <= 15 && landerTwo.x > 1){
+            const currentSquare = $('#landerTwo');
+            currentSquare.removeAttr('id');
+            landerTwo.x--;
+            $(`.square2-${landerTwo.x}-${landerTwo.y}`).attr('id', 'landerTwo');
+        }
+    }
+
+    const moveRightTwo = () => {
+        if(landerTwo.x < 15 && landerTwo.x >= 1){
+            const currentSquare = $('#landerTwo');
+            currentSquare.removeAttr('id');
+            landerTwo.x++;
+            $(`.square2-${landerTwo.x}-${landerTwo.y}`).attr('id', 'landerTwo');
+        }
+    }
+
+    // LEVEL TWO DROPPING LANDER MOVEMENT
+
+    dropLanderTwo = () => {
+        if(landerTwo.y <= 15 && landerTwo.y > 1){
+            $(`.square2-${landerTwo.x}-${landerTwo.y}`).removeAttr('id');
+            landerTwo.y--;
+            $(`.square2-${landerTwo.x}-${landerTwo.y}`).attr('id', 'landerTwo');
+        }
+    };
+
+    // CREATE SPEED ASSIST (CLOUDS) FOR LEVEL 2
+
+    const speedAssistArrayTwo = [];
+    class SpeedAssistTwo {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            $(`.square2-${this.x}-${this.y}`).addClass('speedAssistTwo');
+            speedAssistArrayTwo.push(this);
+        }
+    } 
+
+    // STATIC IMAGES FOR WHEN LEVEL 2 PAGE LOADS
+
+    $(`.square2-1-15`).attr('id', 'moon');
+    new SpeedAssistTwo(1, 13);
+    new SpeedAssistTwo(1, 9);
+    new SpeedAssistTwo(1, 5);
+
+    // TIMER FOR LEVEL 2
+
+    const timePassesTwo = () => {
+    const intervalTwo = setInterval(() => {
+        if(timeTwo > 0){
+            timeTwo--;
+            $('.timeDisplay').text(`Timer: ${timeTwo}s`).attr('id', 'timer');
+            for(let i = 0; i < speedAssistArrayTwo.length; i++){
+                moveSpeedAssistLevelTwo(speedAssistArrayTwo[i])
+            };
+            if(timeTwo % 2 === 0){
+                const yCoordinate = Math.floor(Math.random()* 12 + 3);
+                new SpeedAssistTwo(1, yCoordinate)
+            }
+            if(timeTwo % 1 === 0){
+            dropLanderTwo();
+            }
+        }
+        if($('.speedAssistTwo#landerTwo').length > 0){
+            dropLanderTwo();
+            if(timeTwo <= 19){
+                $('#swooshSound')[0].play();
+                $('.swooshDisplay').text(`Speeding Up!`).attr('id', 'swoosh');
+                setTimeout(removeSwooshDisplay, 500);
+            }
+        }
+        else if($('.square2-1-1#landerTwo').length > 0 || $('.square2-2-1#landerTwo').length > 0 || $('.square2-3-1#landerTwo').length > 0 || $('.square2-4-1#landerTwo').length > 0 || $('.square2-5-1#landerTwo').length > 0 || $('.square2-6-1#landerTwo').length > 0 || $('.square2-7-1#landerTwo').length > 0 || $('.square2-8-1#landerTwo').length > 0 || $('.square2-9-1#landerTwo').length > 0 || $('.square2-10-1#landerTwo').length > 0 || $('.square2-11-1#landerTwo').length > 0 || $('.square2-12-1#landerTwo').length > 0 || $('.square2-13-1#landerTwo').length > 0 || $('.square2-15-1#landerTwo').length > 0){
+            $('.missedTargetModal').modal()
+            clearInterval(intervalTwo);
+        }
+        else if(timeTwo === 0){
+            $('.timesUpModal').modal()
+            clearInterval(intervalTwo);
+        }
+        else if($('.landingPadTwo#landerTwo').length > 0){
+            $('.finalModal').modal()
+            clearInterval(intervalTwo);
+        }   
+    }, 1000);
+    };
+
+    // START TIMER TWO
+
+    $('.beginLevelTwoButton').on('click', () => {
+        timePassesTwo();
+        $(`.square2-14-1`).addClass('landingPadTwo');
+    });
+
+
+});
 
 
 
